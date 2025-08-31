@@ -110,14 +110,14 @@ Though all the files, they actually can be divided into 7 basic parts:
 - The pooling buffer stores the 1\*2 pooling result and provide inputs for 2\*1 pooling.
 - Pooling engine is actually a comparator in max-pool. Thus, every time 1\*2\*PCP or 2\*1\*PCP inputs come, the 'PCP' pooling engines pick the larger one in each channel. In odd rows, pooling unit only do the 1\*2 pooling and stores the results to pooling buffer. In even rows, the unit first do the 1\*2 pooling and make a comparison between this result and the last odd-row result in the same column to complete the 2\*1 pooling.
 ### Flatten unit
-The flatten unit uses a simple method.
+The flatten unit uses a 2-bank method, which is illustrated in the picture below.
 ![flatten](/assets/flatten.jpg)
 ### Full connect unit
-The full connect units a simple method.
+The full connect units a node-batch method. We divide all input node into several batches, use a double cyculation algorithm to calculate output node one by one.
 ![full_connect](/assets/full_connect.jpg)
 ![fc_algorithm](/assets/fc_algorithm.jpg)
 ### Control unit
-The control unit works as a finite state machine.
+The control unit works as a finite state machine. It receives signals from other modules to see the working status and send signals to control the working status.
 
 The dataflow of the main parts(Triple sliding-window input buffer, Depthwise Separable Convolution Unit, Pooling unit) is shown in the picture below.
 ![dataflow](/assets/dataflow.jpg)
