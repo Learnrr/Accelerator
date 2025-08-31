@@ -23,6 +23,7 @@ The file organization is as follows.
 
 Accelerator  
 |----assets  
+|&emsp;&emsp;|----examples  
 |----srcs  
 |&emsp;&emsp;|----constrs_1  
 |&emsp;&emsp;|----sim_1  
@@ -32,7 +33,7 @@ Accelerator
 |----weights  
 |----build.bat  
 |----build.tcl  
-`assets` dir contains some pictures used for this readme. The `srcs` dir contains the contraint files `constrs_1`, simulation files `sim_1`, and HDL files `sources_1`. The `weights` dir contains the weight coe files and bias files for ram/rom IP initialization.  `build.bat` and `build.tcl` are for building project.
+`assets` dir contains some pictures used for this readme and examples. The `srcs` dir contains the contraint files `constrs_1`, simulation files `sim_1`, and HDL files `sources_1`. The `weights` dir contains the weight coe files and bias files for ram/rom IP initialization.  `build.bat` and `build.tcl` are for building project.
 
 ## How to start
 1. clone the repository.  
