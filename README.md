@@ -61,7 +61,7 @@ The main file organization of the accelerator HDL is shown in the follows. If yo
 |&emsp;&emsp;|&emsp;&emsp;|----depth_weight_rom        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                 |  
 |&emsp;&emsp;|&emsp;&emsp;|----depthwise           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                     |  
 |&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine       &emsp;&emsp;&emsp;&emsp;       |  
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...              &emsp;&emsp;&emsp;&emsp;        |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;        |  
 |&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine       &emsp;&emsp;&emsp;&emsp;       |  Depthwise Separable Convolution Unit  
 |&emsp;&emsp;|&emsp;&emsp;|----intermediate_buffer              &emsp;&emsp;&emsp;&emsp;        |  
 |&emsp;&emsp;|&emsp;&emsp;|----point_weight_rom                &emsp;&emsp;&emsp;&emsp;         |  
