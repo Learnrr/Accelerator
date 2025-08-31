@@ -118,7 +118,7 @@ The full connect units a node-batch method. We divide all input node into severa
 ![fc_algorithm](/assets/fc_algorithm.jpg)
 ### Control unit
 The control unit works as a finite state machine. It receives signals from other modules to see the working status and send signals to control the working status.
-
+### Dataflow
 The dataflow of the main parts(Triple sliding-window input buffer, Depthwise Separable Convolution Unit, Pooling unit) is shown in the picture below.
 ![dataflow](/assets/dataflow.jpg)
 ## Examples
