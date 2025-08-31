@@ -1,34 +1,34 @@
 # Accelerator
-##description
+## description
 This is the source code of our accelerator. Master branch is the true form version while project_2 branch is the 2's complement code version. In true form version we can see the results straightly but it takes much more logics to deal with the sign bit, so it has a larger resource usage and lower frequency (30Mhz). However, it has the correct functional simulation and can be employed onto your FPGA board. Project_2 branch is the 2's complement code version and has good performance but until now the functional simulation has not been completed yet. 
 
-##project version
+## project version
 Vivado 2019.2
 ZYNQ-7020
 
-##Abstract
+## Abstract
 Convolutional Neural Networks (CNNs) are widely used, yet their increasing depth poses significant deployment challenges for embedded devices. Depthwise separable convolution (DSC) offers a lightweight alternative by reducing computation and parameters with minimal accuracy loss. However, many existing FPGA implementations prioritize performance over resource efficiency, leading to high memory latency, low utilization, and elevated power consumption. 
 
 This paper introduces a novel FPGA accelerator that addresses these limitations through three co-designed optimizations: A triple sliding-window input buffer design is proposed which could leverage data locality to exploit the parallelism between memory access and computation, thereby reducing latency; A scalable DSC processing unit with adjustable parallelism is designed to meet diverse resource constraints; A two-level nested pipeline is proposed to operate on full channels (outer) and convolution phases (inner), thus effectively minimizing idle time.
 
 Our theoretical runtime analysis demonstrates significant performance gains: the proposed computational and buffering parallelism strategy achieves a 50x speedup in buffering, and the two-level pipeline yields a 6.4x speedup in computation compared to non-parallel and unpipelined approaches, respectively. Implemented on limited resources, the proposed design achieves 7165 FPS at 133MHz with 0.3W power, matching or exceeding prior work. Experiments further analyze the frequency-pipeline-stage-power relationship, indicating that frequency increases sublinearly with pipeline depth, while power scales with both depth and frequency. Results reveal an optimal frequency-power ratio as pipeline depth increases for DSC units.
 
-##project structure
+## Project structure
 The file organization is as follows.
 
 Accelerator  
 |----srcs  
-|       |----constrs_1  
-|       |----sim_1  
-|       |----sources_1  
-|                |----ip  
-|                |----new  
+|$~~~$|----constrs_1  
+|$~~~$|----sim_1  
+|$~~~$|----sources_1  
+|$~~~~~~~~~~~$|----ip  
+|$~~~~~~~~~~~$|----new  
 |----weights  
 |----build.bat  
 |----build.tcl  
 The `srcs` dir contains the contraint files `constrs_1`, simulation files `sim_1`, and HDL files `sources_1`. The `weights` dir contains the weight coe files and bias files for ram/rom IP initialization.  `build.bat` and `build.tcl` are for rebuilding project.
 
-##how to start
+## How to start
 1. clone the repository.  
 you need to clone the project to your local machine.  
 `git clone https://github.com/Learnrr/accelerator.git`
@@ -47,5 +47,5 @@ you may need to update the weight coe files for some IPs and bias files for bias
 7. run the project.
 Now you can run simulation, synthesis, implementation, or deploy it onto your FPGA board.
 
-##system architecture
+## System architecture
 coming soon
