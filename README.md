@@ -51,4 +51,36 @@ you may need to update the weight coe files for some IPs and bias files for bias
 Now you can run simulation, synthesis, implementation, or deploy it onto your FPGA board.
 
 ## System architecture
-coming soon
+The architecture of the accelerator is shown as the following picture.  
+The main file organization of the accelerator HDL is shown in the follows. If you build the project through the procedures in 'How to start' you will see this.
+|----TOP  
+|&emsp;&emsp;|----bram0
+|&emsp;&emsp;|----input_buffer_block  
+|&emsp;&emsp;|----pixel_window  
+|&emsp;&emsp;|----DSU
+|&emsp;&emsp;&emsp;&emsp;|----depth_weight_roM
+|&emsp;&emsp;&emsp;&emsp;|----depthwise
+|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|----compute_engine
+|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|&emsp; ...
+|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|----compute_engine
+|&emsp;&emsp;&emsp;&emsp;|----intermediate_buffer
+|&emsp;&emsp;&emsp;&emsp;|----point_weight_rom
+|&emsp;&emsp;&emsp;&emsp;|----pointwise
+|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|----compute_engine_p
+|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|&emsp; ...
+|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|----compute_engine_p
+|&emsp;&emsp;|----intermediate_buffer2
+|&emsp;&emsp;|----pool
+|&emsp;&emsp;&emsp;&emsp;|----max_pool
+|&emsp;&emsp;&emsp;&emsp;|&emsp; ...
+|&emsp;&emsp;&emsp;&emsp;|----max_pool
+|&emsp;&emsp;|----flatten
+|&emsp;&emsp;|----fc1_weight_rom
+|&emsp;&emsp;|----full_connect1
+|&emsp;&emsp;|----fc2_weight_rom
+|&emsp;&emsp;|----full_connect2
+|&emsp;&emsp;|----control_unit 
+
+
+
+
