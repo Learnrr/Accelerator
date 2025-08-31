@@ -8,8 +8,8 @@ In true form version we can see the results straightly but it takes much more lo
 Project_2 branch is the 2's complement code version and has good performance but until now the functional simulation has not been completed yet. It can go through all the network layers in a expected way but we don't know if the result is correct. Though it's raw code and may be hard to understand, it's almost the same as master branch except for the multiplication and addition operations. After the functional simulation is finished, this branch will be updated.
 
 ## Project version
-Vivado 2019.2  
-ZYNQ-7020
+IDE: Vivado 2019.2  
+FPGA: ZYNQ-7020
 
 ## Abstract
 Convolutional Neural Networks (CNNs) are widely used, yet their increasing depth poses significant deployment challenges for embedded devices. Depthwise separable convolution (DSC) offers a lightweight alternative by reducing computation and parameters with minimal accuracy loss. However, many existing FPGA implementations prioritize performance over resource efficiency, leading to high memory latency, low utilization, and elevated power consumption. 
