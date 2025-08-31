@@ -54,34 +54,51 @@ Now you can run simulation, synthesis, implementation, or deploy it onto your FP
 The architecture of the accelerator is shown as the following picture.  
 The main file organization of the accelerator HDL is shown in the follows. If you build the project through the procedures in 'How to start' you will see this.  
 |----TOP   
-|&emsp;&emsp;|----bram0                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-----------  
-|&emsp;&emsp;|----input_buffer_block                               &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  |  Triple sliding-window input_buffer  
-|&emsp;&emsp;|----pixel_window    &emsp;&emsp;&emsp;&emsp;          -----------  
-|&emsp;&emsp;|----DSU                           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;              -----------  
-|&emsp;&emsp;|&emsp;&emsp;|----depth_weight_rom        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                 |  
-|&emsp;&emsp;|&emsp;&emsp;|----depthwise           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                     |  
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine       &emsp;&emsp;&emsp;&emsp;       |  
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;        |  
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine       &emsp;&emsp;&emsp;&emsp;       |  Depthwise Separable Convolution Unit  
-|&emsp;&emsp;|&emsp;&emsp;|----intermediate_buffer              &emsp;&emsp;&emsp;&emsp;        |  
-|&emsp;&emsp;|&emsp;&emsp;|----point_weight_rom                &emsp;&emsp;&emsp;&emsp;         |  
-|&emsp;&emsp;|&emsp;&emsp;|----pointwise                       &emsp;&emsp;&emsp;&emsp;         |  
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine_p    &emsp;&emsp;&emsp;&emsp;        |  
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...             &emsp;&emsp;&emsp;&emsp;         |  
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine_p  &emsp;&emsp;&emsp;&emsp;-----------  
+|&emsp;&emsp;|----bram0                       &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-----------  
+|&emsp;&emsp;|----input_buffer_block                            &emsp;&emsp;&emsp;&emsp;   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  |     Triple sliding-window input_buffer  
+|&emsp;&emsp;|----pixel_window    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;          -----------  
+|&emsp;&emsp;|----DSU                         &emsp;&emsp;&emsp;&emsp;  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;              -----------  
+|&emsp;&emsp;|&emsp;&emsp;|---- depth_weight_rom       &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;              |  
+|&emsp;&emsp;|&emsp;&emsp;|----depthwise          &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                    |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine       &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;       |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ......          &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;       |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine     &emsp;&emsp;&emsp;&emsp;  &emsp;&emsp;       |         Depthwise Separable Convolution Unit  
+|&emsp;&emsp;|&emsp;&emsp;|----intermediate_buffer             &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;      |  
+|&emsp;&emsp;|&emsp;&emsp;|----- point_weight_rom             &emsp;&emsp;&emsp;&emsp;   &emsp;&emsp;&emsp;       |  
+|&emsp;&emsp;|&emsp;&emsp;|---- pointwise                        &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;         |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine_p   &emsp;&emsp;&emsp;&emsp; &emsp;        |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ........            &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp; &emsp; &emsp; &emsp; &emsp;          |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine_p  &emsp;&emsp;&emsp; -------  
 |&emsp;&emsp;|----intermediate_buffer2     
-|&emsp;&emsp;|----pool                                      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  -----------  
-|&emsp;&emsp;|&emsp;&emsp;|----max_pool                     &emsp;&emsp;&emsp;&emsp;            |  1*2 + 2*1 pooling engine  
-|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...                       &emsp;&emsp;&emsp;&emsp;            |  
-|&emsp;&emsp;|&emsp;&emsp;|----max_pool                    &emsp;&emsp;&emsp;&emsp;   -----------  
-|&emsp;&emsp;|----flatten                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                  flatten unit  
-|&emsp;&emsp;|----fc1_weight_rom                        &emsp;&emsp;&emsp;&emsp;      ----------|  full_connect1 unit  
-|&emsp;&emsp;|----full_connect1                         &emsp;&emsp;&emsp;&emsp;      ----------|  
+|&emsp;&emsp;|----pool                                     &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  -----------  
+|&emsp;&emsp;|&emsp;&emsp;|---- max_pool                     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;            |      1\*2 + 2\*1 pooling Unit  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...                     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;           |  
+|&emsp;&emsp;|&emsp;&emsp;|----max_pool                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;   -----------  
+|&emsp;&emsp;|----flatten                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-------------                  flatten unit  
 
-|&emsp;&emsp;|----fc2_weight_rom                         &emsp;&emsp;&emsp;&emsp;     ----------|  full connect2 unit  
-|&emsp;&emsp;|----full_connect2                         &emsp;&emsp;&emsp;&emsp;      ----------|  
-|&emsp;&emsp;|----control_unit                           &emsp;&emsp;&emsp;&emsp;                  control unit  
+|&emsp;&emsp;|----fc1_weight_rom                       &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;    ---------|  full_connect1 unit  
+|&emsp;&emsp;|----full_connect1                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;      ----------|  
 
-Though all the files, they actually can be divided into 7 basic parts
+|&emsp;&emsp;|----fc2_weight_rom                        &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;     ----------|  full connect2 unit  
+|&emsp;&emsp;|----full_connect2                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;      -----------|  
+|&emsp;&emsp;|----control_unit                           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; -------------                      control unit  
 
+Though all the files, they actually can be divided into 7 basic parts:   
+1. Triple sliding-window input buffer
+2. Depthwise Separable Convolution Unit
+3. Pooling unit
+4. flatten unit
+5. full connect1 unit
+6. full connect2 unit
+7. control unit
 
+### Triple sliding-window input buffer
+'bram0' is the on-chip feature memory which stores the quantified feature maps and it's the source of triple sliding-window input buffer. 'input_buffer_block' is the Layer Window and 'pixel_window' do the function of Pixel Window and Channel Window.
+### Depthwise Separable Convolution Unit
+- Depthwise separable convolution unit consists of depthwise computation unit and its weight rom, pointwise computation unit and its weight rom, and the D2P buffer which stores the partial-channel depthwise results.
+- The depthwise computation unit is implemented in the file 'depthwise'. The unit reads feature map from Channel Window and has 'DCP' computing engines with each computes one channel of window convolution.
+- The D2P buffer is implemented in the file 'intermediate_buffer'. It stores 'DCP' channels' coming out of depthwise unit. When all the channels' result are completed, it starts to push the data to pointwise unit.
+- The pointwse computation unit is implemented in the file 'pointwise'. The unit reads data from D2P_buffer and do the pointwise process. It has 'OCP' computing engines with each computes 'ICP' input channels.
+### Pooling unit
+- Pooling unit consists of several pooling engines and pooling buffer, which are all implemented in the file 'pool'.
+- 
