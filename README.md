@@ -111,8 +111,11 @@ Though all the files, they actually can be divided into 7 basic parts:
 - Pooling engine is actually a comparator in max-pool. Thus, every time 1\*2\*PCP or 2\*1\*PCP inputs come, the 'PCP' pooling engines pick the larger one in each channel. In odd rows, pooling unit only do the 1\*2 pooling and stores the results to pooling buffer. In even rows, the unit first do the 1\*2 pooling and make a comparison between this result and the last odd-row result in the same column to complete the 2\*1 pooling.
 ### Flatten unit
 The flatten unit uses a simple method.
+![flatten](/assets/flatten.jpg)
 ### Full connect unit
 The full connect units a simple method.
+![full_connect](/assets/full_connect.jpg)
+![fc_algorithm](/assets/fc_algorithm.jpg)
 ### Control unit
 The control unit works as a finite state machine.
 
