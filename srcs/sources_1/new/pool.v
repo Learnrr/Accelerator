@@ -158,7 +158,7 @@ module pool#(parameter DATA_WIDTH = 16, parameter POOL_PARALLELISM = 8)(
         .enb(started&&inh==1)
     );
     //2*1 pooling result
-    wire[DATA_WIDTH:0]             result_h[POOL_PARALLELISM-1:0];
+    wire[DATA_WIDTH-1:0]             result_h[POOL_PARALLELISM-1:0];
     
     //2*1 pooling engines PCP is 8
     generate for(i=0;i<POOL_PARALLELISM;i=i+1)begin
