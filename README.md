@@ -18,11 +18,11 @@ The file organization is as follows.
 
 Accelerator  
 |----srcs  
-|&emsp;|----constrs_1  
-|&emsp;|----sim_1  
-|&emsp;|----sources_1  
-|&emsp;&emsp;|----ip  
-|&emsp;&emsp;|----new  
+|&emsp;&emsp;|----constrs_1  
+|&emsp;&emsp;|----sim_1  
+|&emsp;&emsp;|----sources_1  
+|&emsp;&emsp;&emsp;&emsp;|----ip  
+|&emsp;&emsp;&emsp;&emsp;|----new  
 |----weights  
 |----build.bat  
 |----build.tcl  
