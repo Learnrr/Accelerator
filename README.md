@@ -1,6 +1,8 @@
 # Accelerator
 ## Description
-This is the source code of our accelerator. Master branch is the true form version while project_2 branch is the 2's complement code version. In true form version we can see the results straightly but it takes much more logics to deal with the sign bit, so it has a larger resource usage and lower frequency (30Mhz). However, it has the correct functional simulation and can be employed onto your FPGA board. Project_2 branch is the 2's complement code version and has good performance but until now the functional simulation has not been completed yet. 
+This is the source code of our accelerator. Master branch is the true form version while project_2 branch is the 2's complement code version. In true form version we can see the results straightly but it takes much more logics to deal with the sign bit, so it has a larger resource usage and lower frequency (30Mhz). However, it has the correct functional simulation and can be directly employed onto your FPGA board to see the correct results. This version also has a good organization and clear code comments in order to help you to understand.
+
+Project_2 branch is the 2's complement code version and has good performance but until now the functional simulation has not been completed yet. It can go through all the network layers in a expected way but we don't know if the result is correct. Also, it's raw code and may be hard to understand.
 
 ## Project version
 Vivado 2019.2  
