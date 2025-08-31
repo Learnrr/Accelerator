@@ -77,10 +77,10 @@ The main file organization of the accelerator HDL is shown in the follows. If yo
 |&emsp;&emsp;|&emsp;&emsp;|&emsp; ...                     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;           |  
 |&emsp;&emsp;|&emsp;&emsp;|----max_pool                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;   -----------  
 |&emsp;&emsp;|----flatten                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-------------                  flatten unit  
-
+|&emsp;&emsp;|  
 |&emsp;&emsp;|----fc1_weight_rom                       &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;    ---------|  full_connect1 unit  
 |&emsp;&emsp;|----full_connect1                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;      ----------|  
-
+|&emsp;&emsp;|  
 |&emsp;&emsp;|----fc2_weight_rom                        &emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;     ----------|  full connect2 unit  
 |&emsp;&emsp;|----full_connect2                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;      -----------|  
 |&emsp;&emsp;|----control_unit                           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; -------------                      control unit  
