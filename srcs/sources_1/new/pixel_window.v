@@ -271,11 +271,11 @@ module pixel_window #(parameter DATA_WIDTH = 16, parameter PADDING = 1,parameter
    // it is in the situation where UPDATE_PARALLELISM = CHANNEL_PARALLELISM, and if UPDATE_PARALLELISM != CHANNEL_PARALLELISM, it cannot work.
    // because the write port and read port width are fixed the same.
    //3 rows; 4 cols; for 4-channel data and the max input channel num across all conv layers is 32, so 32/4=8 unit in channel dimention
-   reg[DATA_WIDTH*UPDATE_PARALLELISM-1:0]        window[2:0][3:0][32/UPDATE_PARALLELISM:0];
+    reg[DATA_WIDTH*UPDATE_PARALLELISM-1:0]        window[2:0][3:0][32/UPDATE_PARALLELISM-1:0];
    integer                      ii,jj,kk;
    initial begin
          for(ii=0;ii<3;ii=ii+1)begin
-            for(jj=0;jj<UPDATE_PARALLELISM;jj=jj+1)begin
+             for(jj=0;jj<4;jj=jj+1)begin
                 for(kk=0;kk<32/UPDATE_PARALLELISM;kk=kk+1)begin
                     window[ii][jj][kk] = 'b0;
                 end
