@@ -34,7 +34,7 @@ you need to clone the project to your local machine.
 `git clone https://github.com/Learnrr/accelerator.git`
 
 2. build the project. refer to[Version control for Vivado projects](https://www.fpgadeveloper.com/2014/08/version-control-for-vivado-projects.html/).  
-you can use Tcl script to build the project. For windows you can just double click to run the 'build.bat' and it should contain:  
+you can use Tcl script to build the project. For windows you can just double click to run the `build.bat` and it should contain:  
 `your vivado.bat path -mode batch -source build.tcl`  
 Then open the project by clicking on the generated .xpr file.  
 Another way is to run the .bat file from Vivado welcome screen. Just select Window->Tcl Console, use `cd` to enter the project dir and execute the build script.
