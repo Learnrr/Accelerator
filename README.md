@@ -26,7 +26,7 @@ Accelerator
 |----weights  
 |----build.bat  
 |----build.tcl  
-The `srcs` dir contains the contraint files `constrs_1`, simulation files `sim_1`, and HDL files `sources_1`. The `weights` dir contains the weight coe files and bias files for ram/rom IP initialization.  `build.bat` and `build.tcl` are for rebuilding project.
+The `srcs` dir contains the contraint files `constrs_1`, simulation files `sim_1`, and HDL files `sources_1`. The `weights` dir contains the weight coe files and bias files for ram/rom IP initialization.  `build.bat` and `build.tcl` are for building project.
 
 ## How to start
 1. clone the repository.  
