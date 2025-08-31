@@ -54,33 +54,34 @@ Now you can run simulation, synthesis, implementation, or deploy it onto your FP
 The architecture of the accelerator is shown as the following picture.  
 The main file organization of the accelerator HDL is shown in the follows. If you build the project through the procedures in 'How to start' you will see this.  
 |----TOP   
-|&emsp;&emsp;|----bram0   
-|&emsp;&emsp;|----input_buffer_block    
-|&emsp;&emsp;|----pixel_window    
-|&emsp;&emsp;|----DSU   
-|&emsp;&emsp;|&emsp;&emsp;|----depth_weight_rom   
-|&emsp;&emsp;|&emsp;&emsp;|----depthwise   
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine   
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...   
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine   
-|&emsp;&emsp;|&emsp;&emsp;|----intermediate_buffer   
-|&emsp;&emsp;|&emsp;&emsp;|----point_weight_rom   
-|&emsp;&emsp;|&emsp;&emsp;|----pointwise   
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine_p   
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...   
-|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine_p   
-|&emsp;&emsp;|----intermediate_buffer2   
-|&emsp;&emsp;|----pool   
-|&emsp;&emsp;|&emsp;&emsp;|----max_pool   
-|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...   
-|&emsp;&emsp;|&emsp;&emsp;|----max_pool   
-|&emsp;&emsp;|----flatten   
-|&emsp;&emsp;|----fc1_weight_rom   
-|&emsp;&emsp;|----full_connect1   
-|&emsp;&emsp;|----fc2_weight_rom   
-|&emsp;&emsp;|----full_connect2   
-|&emsp;&emsp;|----control_unit   
+|&emsp;&emsp;|----bram0                                       -----------  
+|&emsp;&emsp;|----input_buffer_block                                    |  Triple sliding-window input_buffer  
+|&emsp;&emsp;|----pixel_window                                -----------  
+|&emsp;&emsp;|----DSU                                         -----------  
+|&emsp;&emsp;|&emsp;&emsp;|----depth_weight_rom                         |  
+|&emsp;&emsp;|&emsp;&emsp;|----depthwise                                |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine              |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...                      |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine              |  Depthwise Separable Convolution Unit  
+|&emsp;&emsp;|&emsp;&emsp;|----intermediate_buffer                      |  
+|&emsp;&emsp;|&emsp;&emsp;|----point_weight_rom                         |  
+|&emsp;&emsp;|&emsp;&emsp;|----pointwise                                |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine_p            |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...                      |  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine_p  -----------  
+|&emsp;&emsp;|----intermediate_buffer2     
+|&emsp;&emsp;|----pool                                        -----------  
+|&emsp;&emsp;|&emsp;&emsp;|----max_pool                                 |  1*2 + 2*1 pooling engine  
+|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...                                   |  
+|&emsp;&emsp;|&emsp;&emsp;|----max_pool                       -----------  
+|&emsp;&emsp;|----flatten                                                  flatten unit  
+|&emsp;&emsp;|----fc1_weight_rom                              ----------|  full_connect1 unit  
+|&emsp;&emsp;|----full_connect1                               ----------|  
 
+|&emsp;&emsp;|----fc2_weight_rom                              ----------|  full connect2 unit  
+|&emsp;&emsp;|----full_connect2                               ----------|  
+|&emsp;&emsp;|----control_unit                                             control unit  
 
+Though all the files, they actually can be divided into 7 basic parts
 
 
