@@ -1,4 +1,5 @@
 # Accelerator
+Exploiting Two-Level Pipeline and Triple Sliding-Window Input Buffer for Efficient DSC Accelerator Design
 ## Description
 This is the source code of our accelerator. Master branch is the true form version while project_2 branch is the 2's complement code version. 
 
