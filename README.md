@@ -60,20 +60,20 @@ The main file organization of the accelerator HDL is shown in the follows. If yo
 |&emsp;&emsp;|----DSU   
 |&emsp;&emsp;|&emsp;&emsp;|----depth_weight_rom   
 |&emsp;&emsp;|&emsp;&emsp;|----depthwise   
-|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|----compute_engine   
-|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|&emsp; ...   
-|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|----compute_engine   
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine   
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...   
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine   
 |&emsp;&emsp;|&emsp;&emsp;|----intermediate_buffer   
 |&emsp;&emsp;|&emsp;&emsp;|----point_weight_rom   
 |&emsp;&emsp;|&emsp;&emsp;|----pointwise   
-|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|----compute_engine_p   
-|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|&emsp; ...   
-|&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|----compute_engine_p   
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine_p   
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...   
+|&emsp;&emsp;|&emsp;&emsp;|&emsp;&emsp;|----compute_engine_p   
 |&emsp;&emsp;|----intermediate_buffer2   
 |&emsp;&emsp;|----pool   
-|&emsp;&emsp;&emsp;&emsp;|----max_pool   
-|&emsp;&emsp;&emsp;&emsp;|&emsp; ...   
-|&emsp;&emsp;&emsp;&emsp;|----max_pool   
+|&emsp;&emsp;|&emsp;&emsp;|----max_pool   
+|&emsp;&emsp;|&emsp;&emsp;|&emsp; ...   
+|&emsp;&emsp;|&emsp;&emsp;|----max_pool   
 |&emsp;&emsp;|----flatten   
 |&emsp;&emsp;|----fc1_weight_rom   
 |&emsp;&emsp;|----full_connect1   
