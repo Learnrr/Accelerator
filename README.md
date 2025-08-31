@@ -48,7 +48,7 @@ Another way is to run the .bat file from Vivado welcome screen. Just select Wind
 `source build.tcl`
 
 3. update initialization for ram.  
-you may need to update the weight coe files for some IPs and bias files for bias rom. The weight and bias files are in `weight` dir. In order to find the bias rom location, you can go to `depthwise.v`, `pointwise.v` and `full_connect.v` in `srcs/sources_1/new` to update the bias initialization file path.
+you may need to update the weight coe files for some IPs and bias files for bias rom. The weight and bias files are in `weight` dir. They are from Pytorch and already quantified into 8(project2 branch)/16(master branch) bits using symmetric method. In order to find the bias rom location, you can go to `depthwise.v`, `pointwise.v` and `full_connect.v` in `srcs/sources_1/new` to update the bias initialization file path.
 
 4. run the project.  
 Now you can run simulation, synthesis, implementation, or deploy it onto your FPGA board.
