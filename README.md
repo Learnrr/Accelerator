@@ -54,9 +54,9 @@ Now you can run simulation, synthesis, implementation, or deploy it onto your FP
 The architecture of the accelerator is shown as the following picture.  
 The main file organization of the accelerator HDL is shown in the follows. If you build the project through the procedures in 'How to start' you will see this.  
 |----TOP   
-|&emsp;&emsp;|----bram0                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-----------  
+|&emsp;&emsp;|----bram0                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-----------  
 |&emsp;&emsp;|----input_buffer_block                               &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  |  Triple sliding-window input_buffer  
-|&emsp;&emsp;|----pixel_window    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;          -----------  
+|&emsp;&emsp;|----pixel_window    &emsp;&emsp;&emsp;&emsp;          -----------  
 |&emsp;&emsp;|----DSU                           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;              -----------  
 |&emsp;&emsp;|&emsp;&emsp;|----depth_weight_rom        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                 |  
 |&emsp;&emsp;|&emsp;&emsp;|----depthwise           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;                     |  
