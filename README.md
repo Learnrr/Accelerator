@@ -84,16 +84,18 @@ The main file organization of the accelerator HDL is shown in the follows. If yo
 |&emsp;&emsp;|----control_unit                           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; -------------                      control unit  
 
 Though all the files, they actually can be divided into 7 basic parts:   
-1. Triple sliding-window input buffer
-2. Depthwise Separable Convolution Unit
-3. Pooling unit
-4. flatten unit
-5. full connect1 unit
-6. full connect2 unit
-7. control unit
+- Triple sliding-window input buffer
+- Depthwise Separable Convolution Unit
+- Pooling unit
+- flatten unit
+- full connect1 unit
+- full connect2 unit
+- control unit
 
 ### Triple sliding-window input buffer
-'bram0' is the on-chip feature memory which stores the quantified feature maps and it's the source of triple sliding-window input buffer. 'input_buffer_block' is the Layer Window and 'pixel_window' do the function of Pixel Window and Channel Window.
+- 'bram0' is the on-chip feature memory which stores the quantified feature maps and it's the source of triple sliding-window input buffer.
+- 'input_buffer_block' is the Layer Window.
+- 'pixel_window' do the function of Pixel Window and Channel Window.
 ### Depthwise Separable Convolution Unit
 - Depthwise separable convolution unit consists of depthwise computation unit and its weight rom, pointwise computation unit and its weight rom, and the D2P buffer which stores the partial-channel depthwise results.
 - The depthwise computation unit is implemented in the file 'depthwise'. The unit reads feature map from Channel Window and has 'DCP' computing engines with each computes one channel of window convolution.
@@ -101,4 +103,12 @@ Though all the files, they actually can be divided into 7 basic parts:
 - The pointwse computation unit is implemented in the file 'pointwise'. The unit reads data from D2P_buffer and do the pointwise process. It has 'OCP' computing engines with each computes 'ICP' input channels.
 ### Pooling unit
 - Pooling unit consists of several pooling engines and pooling buffer, which are all implemented in the file 'pool'.
-- 
+- Pooing unit works relying on P2P buffer which is wriiten in the file 'intermediate_buffer2'. Outputs of pointwise unit is of dimension 1\*1\*OCP but inputs required by pooling unit is of dimension 1\*2\*PCP, so it's the P2P buffer do the medium function. P2P buffer accumulates outputs of pointwise unit and when 1\*2 inputs are ready, it starts to feed the data to pooling unit.
+- The pooling buffer stores the 1\*2 pooling result and provide inputs for 2\*1 pooling.
+- Pooling engine is actually a comparator in max-pool. Thus, every time 1\*2\*PCP or 2\*1\*PCP inputs come, the 'PCP' pooling engines pick the larger one in each channel. In odd rows, pooling unit only do the 1\*2 pooling and stores the results to pooling buffer. In even rows, the unit first do the 1\*2 pooling and make a comparison between this result and the last odd-row result in the same column to complete the 2\*1 pooling.
+### Flatten unit
+The flatten unit uses a simple method.
+### Full connect unit
+The full connect units a simple method.
+### Control unit
+The control unit works as a finite state machine.
