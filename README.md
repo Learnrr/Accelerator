@@ -114,9 +114,11 @@ Though all the files, they actually can be divided into 7 basic parts:
 The flatten unit uses a 2-bank method, which is illustrated in the picture below.
 ![flatten](/assets/flatten.jpg)
 ### Full connect unit
-The full connect units a node-batch method. We divide all input node into several batches, use a double cyculation algorithm to calculate output node one by one.
+The full connect units a node-batch method. We divide all input node into several batches, use a double cyculation algorithm to calculate output node one by one. The figure below illustrates it with the cyculation algorithm pseudocode below the picture.
 ![full_connect](/assets/full_connect.jpg)
 ![fc_algorithm](/assets/fc_algorithm.jpg)
+Though the algorithm is depicted as the pseudocode, in fact in the innest cycle, all the multiplications are calculated at the same time. We use a adder tree like the case in depthwise and pointwise module. Since this work mainly improves the DSC layers with pooling and we don't want the full connect layer to be the bottleneck in terms of frequency and throughput, we insert registers into each of the adder tree level, as the picture shows below.
+
 ### Control unit
 The control unit works as a finite state machine. It receives signals from other modules to see the working status and send signals to control the working status.
 ### Dataflow
