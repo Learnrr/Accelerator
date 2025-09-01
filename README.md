@@ -3,9 +3,9 @@ Exploiting Two-Level Pipeline and Triple Sliding-Window Input Buffer for Efficie
 ## Description
 This is the source code of our accelerator. Master branch is the true form version while project_2 branch is the 2's complement code version. 
 
-In true form version we can see the results straightly but it takes much more logics to deal with the sign bit, so it has a larger resource usage and lower frequency (30Mhz). However, it has the correct functional simulation and can be directly employed onto your FPGA board to see the correct results. This version also has a good organization and clear code comments in order to help you to understand.
+In true form version we can see the results straightly but it takes much more logics to deal with the sign bit when addition and multiplication happen, so it has a larger resource usage and lower frequency (50Mhz at 16bit). However, it has the correct functional simulation and can be directly employed onto your FPGA board to see the correct results. This version also has a good organization and clear code comments in order to help you to understand.
 
-Project_2 branch is the 2's complement code version and has good performance but until now the functional simulation has not been completed yet. It can go through all the network layers in a expected way but we don't know if the result is correct. Though it's raw code and may be hard to understand, it's almost the same as master branch except for the multiplication and addition operations. After the functional simulation is finished, this branch will be updated.
+Project_2 branch is the 2's complement code version and has best performance but until now the functional simulation has not been completed yet. It can go through all the network layers in a expected way but we don't know if the result is correct, though we have proved that the logic should be right. Tt's raw code and may be hard to understand, but it's almost the same as master branch except for the multiplication and addition operations. After the functional simulation is finished, this branch will be updated.
 
 ## Project version
 IDE: Vivado 2019.2  
@@ -120,7 +120,7 @@ The full connect units a node-batch method. We divide all input node into severa
 Though the algorithm is depicted as the pseudocode, in fact in the innest cycle, all the multiplications are calculated at the same time. We use a adder tree like the case in depthwise and pointwise module. Since this work mainly improves the DSC layers with pooling and we don't want the full connect layer to be the bottleneck in terms of frequency and throughput, we insert registers into each of the adder tree level to cut off long combinational logic, as the picture shows below.
 ![reg](/assets/reg.jpg)
 ### Control unit
-The control unit works as a finite state machine. It receives signals from other modules to see the working status and send signals to control the working status.
+The control unit works as a finite state machine. It receives signals from other modules to see the working status and sends signals to control the working status.
 ### Dataflow
 The dataflow of the main parts(Triple sliding-window input buffer, Depthwise Separable Convolution Unit, Pooling unit) is shown in the picture below.
 ![dataflow](/assets/dataflow.jpg)
