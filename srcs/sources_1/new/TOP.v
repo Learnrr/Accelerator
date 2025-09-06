@@ -428,19 +428,19 @@ module TOP #(
         if(fc2_done)
             fc2_done_count<=fc2_done_count==3?3:fc2_done_count+1;
     end
-    //results on 10 classes
+    //results on 10 classes，only 3 figures are tested
     always@(posedge clk)begin
         if(fc2_done&&fc2_done_count<3)begin
-         out[0] <= fc2_out[DATA_WIDTH*0+15];
-         out[1] <= fc2_out[DATA_WIDTH*1+15];
-         out[2] <= fc2_out[DATA_WIDTH*2+15];
-         out[3] <= fc2_out[DATA_WIDTH*3+15];
-         out[4] <= fc2_out[DATA_WIDTH*4+15];
-         out[5] <= fc2_out[DATA_WIDTH*5+15];
-         out[6] <= fc2_out[DATA_WIDTH*6+15];
-         out[7] <= fc2_out[DATA_WIDTH*7+15];
-         out[8] <= fc2_out[DATA_WIDTH*8+15];
-         out[9] <= fc2_out[DATA_WIDTH*9+15];
+            out[0] <= fc2_out[DATA_WIDTH*0+DATA_WIDTH-1];
+            out[1] <= fc2_out[DATA_WIDTH*1+DATA_WIDTH-1];
+            out[2] <= fc2_out[DATA_WIDTH*2+DATA_WIDTH-1];
+            out[3] <= fc2_out[DATA_WIDTH*3+DATA_WIDTH-1];
+            out[4] <= fc2_out[DATA_WIDTH*4+DATA_WIDTH-1];
+            out[5] <= fc2_out[DATA_WIDTH*5+DATA_WIDTH-1];
+            out[6] <= fc2_out[DATA_WIDTH*6+DATA_WIDTH-1];
+            out[7] <= fc2_out[DATA_WIDTH*7+DATA_WIDTH-1];
+            out[8] <= fc2_out[DATA_WIDTH*8+DATA_WIDTH-1];
+            out[9] <= fc2_out[DATA_WIDTH*9+DATA_WIDTH-1];
         end
     end
     
